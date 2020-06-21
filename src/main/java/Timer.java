@@ -9,6 +9,11 @@ public class Timer {
     public void printTimeAndReset(String message)
     {
         System.out.println( System.currentTimeMillis()-start + "ms " + message);
+        reset();
+    }
+
+    public void reset()
+    {
         this.start = System.currentTimeMillis();
     }
 
