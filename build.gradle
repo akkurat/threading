@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'org.example'
@@ -7,10 +8,13 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
+mainClassName = "IOProgress"
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation group: 'com.google.guava', name: 'guava', version: '29.0-jre'
 }
