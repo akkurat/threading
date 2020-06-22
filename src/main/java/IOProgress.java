@@ -131,12 +131,17 @@ class MessageOutputer implements Runnable
                 fileIds.put(b.id, b.id+": "+b.asBar(34) );
             }
 
-            System.out.print("\033[H\033[2J");
+            try {
+                Runtime.getRuntime().exec("clear");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // Using
+            System.out.print( "\r" + String.join("\t", fileIds.values()));
 
-            System.out.print( String.join("\n", fileIds.values()));
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(250);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
