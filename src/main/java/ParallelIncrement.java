@@ -4,14 +4,18 @@ import java.util.stream.Collectors;
 
 public class ParallelIncrement {
 
-    public static final int THREADS = 450;
-    public static final int CHUNKS = 1000;
+    public static final int THREADS = 10;
+    public static final int CHUNKS = (int)1e7;
 
     public static void main(String[] args) throws InterruptedException {
         ParallelIncrement main = new ParallelIncrement();
         Timer timer = new Timer();
 
         timer.reset();
+        List<Integer> seqIdsNaive = main.threading( Incrementor::new, false );
+        printResultPartially(seqIdsNaive);
+        timer.printTimeAndReset( "Naive List");
+
         List<Integer> seqIds = main.threading( Incrementor::new, true );
         printResultPartially(seqIds);
         timer.printTimeAndReset( "List Sync");
