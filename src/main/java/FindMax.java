@@ -3,11 +3,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FindMax {
-    private static final int THREADS = 6;
+    private static final int THREADS = 2;
 
     public static void main(String[] args) throws InterruptedException {
 
-        double[] randArray = new Random().doubles(400_000_000).toArray();
+        double[] randArray = new Random().doubles(200_000_000).toArray();
 
 
         Timer timer = new Timer();
@@ -45,6 +45,10 @@ public class FindMax {
 
         OptionalDouble smax = Arrays.stream(randArray).max();
         timer.printTimeAndReset( String.format("streams max %e",  smax.getAsDouble() ) );
+        OptionalDouble smin = Arrays.stream(randArray).min();
+        timer.printTimeAndReset( String.format("streams min %e",  smin.getAsDouble() ) );
+        DoubleSummaryStatistics stats = Arrays.stream(randArray).summaryStatistics();
+        timer.printTimeAndReset( String.format("streams min %s",  stats ) );
         System.exit(0);
     }
 
